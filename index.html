@@ -2,14 +2,94 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0; url=brendbuk/">
-<title>Спортпитник</title>
+<meta name="theme-color" content="#0E0F0C">
+<title>Спортпитник: каталог спортивного питания</title>
+<meta name="description" content="Протеин, гейнеры, BCAA, витамины, батончики. Выберите товары и отправьте заказ в WhatsApp.">
 <link rel="icon" href="znak/znachok.svg">
+<link rel="apple-touch-icon" href="znak/znachok-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css?v=ecca2d3f">
+<link rel="stylesheet" href="css/katalog.css?v=ecca2d3f">
 </head>
-<body style="margin:0;padding:16px;background:#0E0F0C;color:#F4F5F0;font:16px/1.5 sans-serif">
-<!-- Пока каталога нет, корень ведёт на брендбук. Каталог займёт этот файл. -->
-<a href="brendbuk/" style="color:#C8F31D">Брендбук Спортпитник</a>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-katalog" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></symbol>
+  <symbol id="i-razdely" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></symbol>
+  <symbol id="i-poisk" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></symbol>
+  <symbol id="i-zakaz" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-4 3v-3H6a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-nazad" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-dalee" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+</svg>
+
+<header class="shapka">
+  <div class="wrap">
+    <a class="znak" href="#nachalo" aria-label="Спортпитник, в начало каталога">
+      <img src="znak/znak-volt.svg" alt="">
+      <span class="nazvanie">Спортпит<span>ник</span></span>
+    </a>
+    <label class="pole shapka-poisk"><svg class="ico"><use href="#i-poisk"/></svg><span class="skryto">Поиск</span><input type="search" data-poisk placeholder="Например: протеин, BCAA" autocomplete="off"></label>
+    <button class="knopka knopka-glavnaya shapka-zakaz" data-otkryt="zakaz"><svg class="ico"><use href="#i-zakaz"/></svg>Заказ <span class="num" data-chislo>0</span></button>
+  </div>
+</header>
+
+<main id="nachalo">
+  <section class="vvod wrap">
+    <h1 class="h1">Спортивное питание</h1>
+    <p>Выберите товары и отправьте заказ в WhatsApp. Мы ответим, назовём цену и наличие.</p>
+    <label class="pole vvod-poisk"><svg class="ico"><use href="#i-poisk"/></svg><span class="skryto">Поиск</span><input type="search" data-poisk id="poisk" placeholder="Например: протеин, BCAA" autocomplete="off"></label>
+  </section>
+  <nav class="lenta" aria-label="Разделы"><div class="wrap lenta-ryad" id="lenta"></div></nav>
+  <div class="wrap" id="spisok" aria-live="polite"></div>
+  <p class="wrap pusto" id="pusto" hidden>Ничего не нашли. Попробуйте другое слово</p>
+</main>
+
+<footer class="srez podval">
+  <div class="wrap">
+    <h2>Протеин, гейнеры, BCAA, витамины, батончики</h2>
+    <p>Только проверенные бренды. Доставка по всей стране.</p>
+    <a class="podval-nik" href="https://www.instagram.com/sportpitnik/" target="_blank" rel="noopener">@sportpitnik</a>
+  </div>
+</footer>
+
+<nav class="panel-niz" aria-label="Меню">
+  <a href="#nachalo" aria-current="page"><svg class="ico"><use href="#i-katalog"/></svg>Каталог</a>
+  <button data-otkryt="razdely"><svg class="ico"><use href="#i-razdely"/></svg>Разделы</button>
+  <button data-poisk-knopka><svg class="ico"><use href="#i-poisk"/></svg>Поиск</button>
+  <button data-otkryt="zakaz"><svg class="ico"><use href="#i-zakaz"/></svg>Заказ<span class="metka" data-metka hidden>0</span></button>
+</nav>
+
+<dialog class="list" id="list-tovar" aria-labelledby="tovar-imya">
+  <div class="list-shapka"><button class="list-zakryt" data-zakryt aria-label="Закрыть"><svg class="ico"><use href="#i-nazad"/></svg></button><div><span class="podpis" id="tovar-brend"></span><h2 id="tovar-imya"></h2></div></div>
+  <p class="podpis" id="tovar-podskazka"></p>
+  <ul class="vkusy" id="tovar-vkusy"></ul>
+  <div class="list-niz"><button class="knopka knopka-glavnaya" data-zakryt>Готово</button></div>
+</dialog>
+
+<dialog class="list" id="list-razdely" aria-labelledby="razdely-z">
+  <div class="list-shapka"><button class="list-zakryt" data-zakryt aria-label="Закрыть"><svg class="ico"><use href="#i-nazad"/></svg></button><h2 id="razdely-z">Разделы</h2></div>
+  <ul class="razdely-spisok" id="razdely-spisok"></ul>
+</dialog>
+
+<dialog class="list" id="list-zakaz" aria-labelledby="zakaz-z">
+  <div class="list-shapka"><button class="list-zakryt" data-zakryt aria-label="Закрыть"><svg class="ico"><use href="#i-nazad"/></svg></button><h2 id="zakaz-z">Заказ</h2></div>
+  <p class="pusto" id="zakaz-pusto">В заказе пока пусто. Выберите товар в каталоге</p>
+  <ul class="vkusy" id="zakaz-spisok"></ul>
+  <div class="list-niz" id="zakaz-niz">
+    <label class="pole"><span class="skryto">Ваше имя</span><input id="imya" placeholder="Ваше имя" autocomplete="given-name" maxlength="40"></label>
+    <a class="knopka knopka-glavnaya" id="otpravit" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg>Отправить заказ в WhatsApp</a>
+    <p class="podpis">Мы ответим, назовём цену и наличие</p>
+    <button class="ochistit" id="ochistit">Очистить заказ</button>
+  </div>
+</dialog>
+
+<script src="js/tovary-1.js?v=ecca2d3f"></script>
+<script src="js/tovary-2.js?v=ecca2d3f"></script>
+<script src="js/tovary-3.js?v=ecca2d3f"></script>
+<script src="js/app.js?v=ecca2d3f"></script>
 </body>
 </html>

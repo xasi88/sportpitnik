@@ -1,0 +1,80 @@
+/* Спортпитник: каталог. Значения только из base.css (брендбук). Телефон по умолчанию, 1080 точек: компьютер. */
+
+body{padding-bottom:calc(var(--bar) + env(safe-area-inset-bottom))}
+@media (min-width:1080px){body{padding-bottom:0}}
+[hidden]{display:none!important}
+body:has(dialog[open]){overflow:hidden}
+
+/* шапка */
+.shapka{position:sticky;top:0;z-index:20;background:var(--night);border-bottom:1px solid var(--line)}
+.shapka .wrap{display:flex;align-items:center;gap:var(--s4);height:64px}
+.shapka-poisk,.shapka-zakaz{display:none}
+@media (min-width:1080px){
+  .shapka-poisk{display:flex;flex:1;max-width:420px;margin-left:auto}
+  .shapka-zakaz{display:inline-flex}
+  .vvod-poisk{display:none}
+}
+.shapka-zakaz .num{min-width:20px;text-align:center}
+
+/* ввод */
+.vvod{padding-top:var(--s6);padding-bottom:var(--s4)}
+.vvod p{margin:var(--s2) 0 var(--s4);color:var(--muted);max-width:560px}
+
+/* лента разделов: прилипает под шапкой */
+.lenta{position:sticky;top:64px;z-index:15;background:var(--night);border-bottom:1px solid var(--line)}
+.lenta-ryad{display:flex;gap:var(--s2);overflow-x:auto;padding-top:var(--s2);padding-bottom:var(--s2);scrollbar-width:none}
+.lenta-ryad::-webkit-scrollbar{display:none}
+
+/* список товаров */
+.razdel-blok{padding-top:var(--s8);scroll-margin-top:128px}
+.razdel-blok .h2{margin-bottom:var(--s2)}
+.tovary-spisok{list-style:none;margin:0;padding:0;display:grid}
+@media (min-width:768px){.tovary-spisok{grid-template-columns:1fr 1fr;column-gap:var(--s8)}}
+@media (min-width:1080px){.tovary-spisok{grid-template-columns:1fr 1fr 1fr}}
+.stroka{display:flex;align-items:center;gap:var(--s3);width:100%;min-height:72px;padding:var(--s3) 0;border-bottom:1px solid var(--line);text-align:left}
+.stroka-tekst{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--s1)}
+.stroka-imya{font:600 15px/1.35 var(--f-text);color:var(--text)}
+.stroka-metka{flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:88px;min-height:var(--tap);padding:0 var(--s3);border-radius:var(--r-btn);background:var(--field);color:var(--volt);font:700 14px/1 var(--f-text)}
+.stroka-metka.est{background:var(--volt);color:var(--night)}
+.stroka:active .stroka-metka{transform:scale(.97)}
+.pusto{color:var(--muted);padding-top:var(--s8);padding-bottom:var(--s8)}
+
+/* подвал: косой срез */
+.podval{margin-top:var(--s16)}
+.podval h2{margin:0;font:800 22px/1.25 var(--f-text)}
+.podval p{margin:var(--s3) 0 0;font-weight:600}
+.podval-nik{display:inline-flex;align-items:center;min-height:var(--tap);margin-top:var(--s4);font:700 32px/1 var(--f-head);text-decoration:none}
+
+/* листы: снизу на телефоне, справа на компьютере */
+dialog.list{position:fixed;inset:auto 0 0 0;margin:0;width:100%;max-width:none;max-height:88dvh;overflow:auto;border:0;color:var(--text);padding-top:var(--s4)}
+dialog.list::backdrop{background:rgba(14,15,12,.72)}
+dialog.list[open]{animation:list-vverh .24s var(--ease)}
+@keyframes list-vverh{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+@media (min-width:1080px){
+  dialog.list{inset:0 0 0 auto;width:440px;height:100dvh;max-height:none;border-radius:var(--r-sheet) 0 0 var(--r-sheet)}
+  dialog.list[open]{animation-name:list-vlevo}
+  @keyframes list-vlevo{from{transform:translateX(24px);opacity:0}to{transform:none;opacity:1}}
+}
+.list-shapka{display:flex;align-items:flex-start;gap:var(--s3);margin-bottom:var(--s3)}
+.list-shapka h2{margin:0;font:700 22px/1.2 var(--f-head);text-transform:uppercase}
+.list-zakryt{flex:none;display:flex;align-items:center;justify-content:center;width:var(--tap);height:var(--tap);margin-left:calc(-1 * var(--s3));border-radius:var(--r-btn);color:var(--text)}
+.list-niz{position:sticky;bottom:calc(-1 * (var(--s6) + env(safe-area-inset-bottom)));display:grid;gap:var(--s3);margin-top:var(--s4);padding:var(--s4) 0 calc(var(--s6) + env(safe-area-inset-bottom));background:var(--panel)}
+.list-niz .podpis{text-align:center}
+
+/* вкусы и строки заказа */
+.vkusy{list-style:none;margin:0;padding:0}
+.vkus{display:flex;align-items:center;gap:var(--s3);min-height:64px;padding:var(--s2) 0;border-bottom:1px solid var(--line)}
+.vkus-imya{flex:1;min-width:0;font:600 15px/1.35 var(--f-text)}
+.vkus-imya small{display:block;font:600 13px/1.4 var(--f-text);color:var(--muted)}
+.vkus .knopka{min-width:112px;min-height:var(--tap)}
+.vkus .schyot{flex:none;width:136px;height:var(--tap);margin-top:0}
+.vkus .schyot button{width:var(--tap)}
+
+/* разделы в листе */
+.razdely-spisok{list-style:none;margin:0;padding:0 0 var(--s6)}
+.razdely-spisok button{display:flex;align-items:center;gap:var(--s3);width:100%;min-height:56px;border-bottom:1px solid var(--line);font:600 16px/1.3 var(--f-text);text-align:left}
+.razdely-spisok button span{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
+.razdely-spisok .ico{color:var(--muted)}
+
+.ochistit{min-height:var(--tap);color:var(--muted);font:600 14px/1 var(--f-text);text-decoration:underline;text-underline-offset:4px}
+#otpravit[aria-disabled="true"]{opacity:.4;pointer-events:none}
